@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.js"></script>
+
+    <script type="text/javascript" src="ui-bootstrap-tpls-2.5.0.min.js"></script>
+
+    <script src="basicjs.js"></script>
+    <script src="nwtest_service.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body ng-app="app" ng-controller="nwtest">
+
+
+    <div>
+        <div>
+            <button class ="btn btn-primary" ng-click="requstAll()">Get All Data</button>
+        </div>
+
+        <div>
+            <select  ng-model="filterType" ng-options="option as option for option in filterTypeList"
+                ng-disabled ="people==null"
+                ng-change="filterValue=null "><option value="">Please select a filter type</option></select>
+            <input ng-model="filterValue" ng-change="doFilter()"
+                   ng-disabled ="people==null"/>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>URL</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr ng-repeat="person in filteredPeople | orderBy:'mal_id'">
+                    <td>{{person.mal_id}}</td>
+                    <td>{{person.name}}</td>
+                    <td>{{person.url}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>
